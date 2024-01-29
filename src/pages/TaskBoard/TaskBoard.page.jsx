@@ -7,6 +7,9 @@ import Column from "../../components/Column/Column.component";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 
+//設定dragLayer
+import CustomDragLayer from "../../components/CustomDragLayer/CustomDragLayer.component";
+
 const TaskBoard = props => {
   console.log(props.tasks);
   const [myTasks, moveMyTask] = useState(props.tasks);
@@ -33,6 +36,8 @@ const TaskBoard = props => {
 
   return (
     <DndProvider backend={HTML5Backend}>
+        {/* 在這裡引入dragLayer */}
+        <CustomDragLayer />
         <div className="task-board">{columns}</div>
     </DndProvider>
   );
