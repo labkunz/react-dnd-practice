@@ -10,8 +10,22 @@ import { DndProvider } from "react-dnd";
 const TaskBoard = props => {
   const [myTasks, moveMyTask] = useState(props.tasks);
 
+  //設定drop區域
+  const handleMoveMyTask = (from, to) => {
+    const { task, columnIndex: fromColumnIndex, index } = from;
+    const { columnIndex: toColumnIndex } = to;
+
+    const newMyTasks = [...myTasks];
+    // remove task
+    newMyTasks[fromColumnIndex].tasks.splice(index, 1);  //這裡出錯
+    // move task
+    newMyTasks[toColumnIndex].tasks.push(task);
+    moveMyTask(newMyTasks);
+  }
+
   const columns = myTasks.map((tasks, columnIndex) => {
-    const propsToColumn = { tasks, columnIndex };
+    //handleMoveMyTask在這裡做使用
+    const propsToColumn = { tasks, columnIndex, handleMoveMyTask };
     return <Column key={`column ${columnIndex}`} {...propsToColumn} />;
   });
 
