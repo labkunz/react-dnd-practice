@@ -9,6 +9,7 @@ import { ItemTypes } from "../../Constants";
 const Column = ({ tasks: { title, tasks }, columnIndex, handleMoveMyTask }) => {
   const cards = tasks.map((task, index) => {
     const propsToDraggbleCard = { task, columnIndex, index };
+    //由這邊確認相關的變數應該是從DraggableCard傳遞過來
     return (
       <DraggableCard
         key={`${columnIndex} ${index} ${task}`}
@@ -23,6 +24,11 @@ const Column = ({ tasks: { title, tasks }, columnIndex, handleMoveMyTask }) => {
     drop: item => {
       const from = item;
       const to = { columnIndex };
+    //   console.log("from: ");
+    //   console.log(from);
+    //   console.log("to: ");
+    //   console.log(to);
+    //這裡來確認了from是空物件
       handleMoveMyTask(from, to);
     },
     canDrop: item => item.columnIndex !== columnIndex

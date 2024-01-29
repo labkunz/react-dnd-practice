@@ -8,6 +8,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 
 const TaskBoard = props => {
+  console.log(props.tasks);
   const [myTasks, moveMyTask] = useState(props.tasks);
 
   //設定drop區域
@@ -18,6 +19,7 @@ const TaskBoard = props => {
     const newMyTasks = [...myTasks];
     // remove task
     newMyTasks[fromColumnIndex].tasks.splice(index, 1);  //這裡出錯
+    //出錯原因: 所輸入的from為空物件, 因此fromColumnIndex也是沒東西, 就找不到tasks屬性
     // move task
     newMyTasks[toColumnIndex].tasks.push(task);
     moveMyTask(newMyTasks);
