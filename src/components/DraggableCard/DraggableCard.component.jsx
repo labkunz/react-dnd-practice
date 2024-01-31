@@ -9,7 +9,7 @@ import { getEmptyImage } from "react-dnd-html5-backend";
 const DraggableCard = props => {
 
   console.log(props);
-  const [{}, dragRef, preview] = useDrag({
+  const [{}, dragRef, preview] = useDrag({  //這裡第三個就是拖曳元件接口
     // 寫法似乎有更新
     // 舊寫法 => item: { type: ItemTypes.CARD, ...props }
     type: ItemTypes.CARD,  //藉此回頭過來確認useDrag的變數是否有設定好
